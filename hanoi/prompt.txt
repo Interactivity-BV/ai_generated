@@ -1,0 +1,90 @@
+
+### ✅ **Tower of Hanoi Solver – Application Description**
+
+Create a **command-line Java application** that **automatically solves** the Tower of Hanoi puzzle.
+
+---
+
+### 📋 **Functional Requirements**
+
+1. **User Input:**
+
+   * At the start, prompt the user:
+
+     ```
+     Enter number of disks:
+     ```
+   * Read an integer `n` (where `n >= 1`) to determine the number of disks.
+
+2. **Initial Setup:**
+
+   * Three pegs:
+
+     * Peg A (source): contains all disks from `n` (largest) to `1` (smallest), bottom to top.
+     * Peg B (auxiliary): empty.
+     * Peg C (target): empty.
+
+3. **Solution Execution:**
+
+   * The application must compute and display the steps to move all disks from **Peg A** to **Peg C** following the rules:
+
+     * Only one disk can be moved at a time.
+     * Only the top disk from a peg can be moved.
+     * A larger disk may never be placed on top of a smaller one.
+
+4. **Display Each Move:**
+
+   * For each step, output:
+
+     ```
+     Move disk 1 from A to C
+     Move disk 2 from A to B
+     ...
+     ```
+   * Optionally, after each move, display the state of all pegs (for visual clarity).
+
+5. **End State:**
+
+   * When all disks are on Peg C in correct order, display:
+
+     ```
+     Puzzle solved in 2^n - 1 moves.
+     ```
+
+---
+
+### 🛠 **Implementation Notes**
+
+* Use a **recursive algorithm**:
+
+  ```java
+  solve(n, source, auxiliary, target)
+    if n == 1:
+        move disk from source to target
+    else:
+        solve(n-1, source, target, auxiliary)
+        move disk n from source to target
+        solve(n-1, auxiliary, source, target)
+  ```
+* Use characters `'A'`, `'B'`, and `'C'` to label the pegs.
+* Use `System.out.println()` to show each move.
+* Store the current state in `Stack<Integer>` structures if peg visualization is required.
+
+---
+
+### 🧪 **Example Output for 2 Disks:**
+
+```
+Enter number of disks: 2
+
+Move disk 1 from A to B
+Move disk 2 from A to C
+Move disk 1 from B to C
+
+Puzzle solved in 3 moves.
+```
+
+---
+
+This version emphasizes **autonomous puzzle solving** and is perfect for demonstrating algorithmic reasoning or recursion.
+

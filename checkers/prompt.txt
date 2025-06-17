@@ -1,0 +1,182 @@
+### ✅ **Checker Jumping Puzzle – BFS-Based Java Application**
+
+Create a **command-line Java application** that automatically solves the one-dimensional **Checker Jumping Puzzle** using a **Breadth-First Search (BFS)** algorithm.
+
+---
+
+### 🎯 **Objective**
+
+Given:
+- `n` red checkers (`R`)
+- `n` blue checkers (`B`)
+- One empty space (`_`)
+
+The program should:
+- Prompt the user for `n ≥ 1`
+- Build the initial board state:
+```
+
+R R ... R \_ B B ... B
+
+```
+- Use BFS to compute the **shortest sequence of valid moves** to reach:
+```
+
+B B ... B \_ R R ... R
+
+```
+- Print each move and final summary.
+
+---
+
+### 🧩 **Puzzle Rules**
+
+- Only **one checker moves per step**
+- Two valid forward-only move types:
+1. **Slide**: move into the adjacent empty space
+   - Red (`R`) slides right
+   - Blue (`B`) slides left
+2. **Jump**: jump over one adjacent opposite-colored checker into the empty space
+   - Red (`R`) jumps right over Blue (`B`)
+   - Blue (`B`) jumps left over Red (`R`)
+- **No backward moves**
+- **Only one empty space** at all times
+
+---
+
+### 👤 **User Input**
+
+Prompt:
+```
+
+Enter number of checkers:
+
+```
+Let this value be `n` (integer ≥ 1)
+
+---
+
+### 🔄 **Board Representation**
+
+Use a `String` or `char[]` of size `2n + 1`:
+- `'R'`: red checker
+- `'B'`: blue checker
+- `'_'`: empty space
+
+---
+
+### 📌 **Correct Example: n = 2**
+
+**Initial state**:  
+```
+
+R R \_ B B
+
+```
+
+**Goal state**:  
+```
+
+B B \_ R R
+
+```
+
+### ✅ **Shortest Solution in 8 Steps:**
+
+```
+
+Step 1: Slide R from 1 to 2 → R \_ R B B
+Step 2: Slide R from 0 to 1 → \_ R R B B
+Step 3: Jump B from 4 to 2 → \_ R B R B
+Step 4: Slide B from 4 to 3 → \_ R B B R
+Step 5: Jump R from 1 to 3 → \_ \_ B R R
+Step 6: Slide B from 2 to 1 → \_ B \_ R R
+Step 7: Slide B from 1 to 0 → B \_ \_ R R
+Step 8: Puzzle solved → B B \_ R R
+
+```
+
+🟢 **8 moves**, which matches the theoretical minimum:
+
+```
+
+(n + 1)^2 - 1 = (2 + 1)^2 - 1 = 9 - 1 = 8
+
+```
+
+---
+
+### 🔁 **Algorithm Requirement: Breadth-First Search (BFS)**
+
+The program **must use BFS** to:
+- Explore board configurations level by level
+- Guarantee finding the **shortest valid sequence of moves**
+- Avoid cycles by storing **visited states**
+
+---
+
+### 🛠 **Implementation Guidelines**
+
+- Use standard Java data structures: `Queue`, `Set`, `Map`, `List`
+- Do not use third-party libraries
+- Keep code in **one class**
+- Use helper methods for:
+  - Valid move detection
+  - Board manipulation
+  - Move logging
+  - BFS traversal and backtracking
+
+---
+
+### ➕ **Valid Move Rules (empty at index `i`)**
+
+1. **Red Jump Right**:  
+   `i ≥ 2 && board[i - 2] == 'R' && board[i - 1] == 'B'`
+
+2. **Blue Jump Left**:  
+   `i ≤ len - 3 && board[i + 1] == 'R' && board[i + 2] == 'B'`
+
+3. **Red Slide Right**:  
+   `i ≥ 1 && board[i - 1] == 'R'`
+
+4. **Blue Slide Left**:  
+   `i ≤ len - 2 && board[i + 1] == 'B'`
+
+---
+
+### 📋 **Suggested Method List**
+
+| Method | Signature | Description |
+|--------|-----------|-------------|
+| `main` | `public static void main(String[] args)` | Handles input and calls solver |
+| `initBoard` | `static String initBoard(int n)` | Generates the initial board |
+| `goalBoard` | `static String goalBoard(int n)` | Generates the goal board |
+| `solveBFS` | `static List<Move> solveBFS(String start, String goal)` | Core BFS solver |
+| `getValidMoves` | `static List<Move> getValidMoves(String board)` | Generates all valid moves |
+| `applyMove` | `static String applyMove(String board, Move move)` | Returns new board state |
+| `printMoves` | `static void printMoves(List<Move> moves)` | Prints step-by-step trace |
+
+> A `Move` object should include:
+> - from index
+> - to index
+> - checker type ('R' or 'B')
+> - move type ("Slide" or "Jump")
+> - resulting board (optional for output)
+
+---
+
+### ✅ Summary
+
+- Prompt for input `n`
+- Generate initial and goal states
+- Use BFS to find shortest move sequence
+- Validate and apply only legal forward moves
+- Print move history with step numbers and details
+- Finish with summary:
+```
+
+Puzzle solved in X moves (expected minimum: (n + 1)^2 - 1)
+
+```
+
+

@@ -1,0 +1,70 @@
+
+### ✅ **Description: `bc` (Basic Calculator) - Application Specification**
+
+Create a command-line calculator similar to the Unix/Linux `bc` tool. This calculator should support **arithmetic expressions**, **basic math operations**, and **interactive input**.
+
+---
+
+### 📋 Features:
+
+1. **Interactive Mode:**
+
+   * The calculator runs in a loop, accepting input from the user until explicitly exited (e.g., with `quit` or `exit`).
+   * After evaluating an expression, it displays the result and prompts for a new one.
+
+2. **Arithmetic Support:**
+
+   * The calculator should handle:
+
+     * **Addition**: `+`
+     * **Subtraction**: `-`
+     * **Multiplication**: `*`
+     * **Division**: `/`
+     * **Modulo**: `%`
+     * **Exponentiation**: `^` (optional but common in `bc`)
+   * Integer and **floating point numbers** should both be supported.
+
+3. **Operator Precedence:**
+
+   * Honor standard mathematical precedence:
+
+     * Parentheses `()`
+     * Exponents `^`
+     * Multiplication/Division/Modulo
+     * Addition/Subtraction
+
+4. **Scale / Decimal Precision (Optional for basic version):**
+
+   * In the real `bc`, the `scale` variable controls decimal precision.
+   * For a simplified version, you can hard-code results to show 2 or more decimal places.
+
+5. **Exit Command:**
+
+   * The program ends when the user types `quit` or `exit`.
+
+---
+
+### 🧪 Example Expressions the App Should Handle:
+
+| Input                    | Output (if scale = 2)  |
+| ------------------------ | ---------------------- |
+| `2 + 3`                  | `5`                    |
+| `5 * (2 + 3)`            | `25`                   |
+| `10 / 3`                 | `3.33`                 |
+| `10 % 4`                 | `2`                    |
+| `2 ^ 3`                  | `8`                    |
+| `3.5 + 1.2 * 4`          | `8.3`                  |
+| `((10 - 3) * 2 + 1) / 3` | `5.0`                  |
+| `quit` or `exit`         | *(terminates program)* |
+
+---
+
+### 📌 Implementation Notes:
+
+* Input should be read from standard input using `Scanner`.
+* The application must parse and evaluate mathematical expressions as text.
+* You may use:
+  * A custom parser or shunting-yard algorithm for full expression support.
+* Keep the code in a **single class**, suitable for command-line usage.
+
+---
